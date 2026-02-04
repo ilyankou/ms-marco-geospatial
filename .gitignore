@@ -3,6 +3,7 @@
 interim/query_emb.npy
 ~$*.xlsx
 ~$*.xls
+spatial-classifier
 spatial_classifier
 spatial_classifier_prod
 runs
