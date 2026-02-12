@@ -322,7 +322,7 @@
 
 ---
 ## Cluster 16 (302 samples)
-> Locations in Washington DC
+> Locations of places around Washington DC
 
 **Representative Query:** `what is the location of washington dc`
 **Top Terms:** dc, washington, museum, washington dc, oldest, capitol, located, capitol building, potomac river, potomac, lincoln, building, state, state washington, chesapeake, smithsonian, oldest city, city, memorial, house
@@ -474,7 +474,7 @@
 
 ---
 ## Cluster 24 (1009 samples)
-> Locations of sports venues and events
+> Location of sports venues and events
 
 **Representative Query:** `where is the open being played`
 **Top Terms:** stadium, play, seats, golf, baseball, played, held, arena, chicago, does, hold, new york, new, york, spring training, team, nyc, bronx, located, bowl
@@ -854,7 +854,7 @@
 
 ---
 ## Cluster 44 (222 samples)
-> Best time to visit a place
+> Best time or season to visit a place
 
 **Representative Query:** `what is the best time of the year to go to cozumel`
 **Top Terms:** best time, time, best, time visit, visit, time year, year visit, good time, year, good, disney world, travel, time travel, disney, month, canyon best, grand canyon, holidays, cheapest, cancun
@@ -1367,7 +1367,7 @@
 
 ---
 ## Cluster 71 (533 samples)
-> Headquarters locations of organisations
+> Locations of organisation and corporate headquarters
 
 **Representative Query:** `where is headquarters located`
 **Top Terms:** headquarters, bank, credit, headquarters located, located, credit union, headquartered, hq, headquarters address, corporate, address, union, microsoft, federal credit, amazon, federal, headquarters microsoft, wells fargo, headquarters headquarters, corporate headquarters

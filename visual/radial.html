@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>Vega radial hierarchy</title>
+    <script src='https://cdn.jsdelivr.net/npm/vega@6'></script>
+    <script src='https://cdn.jsdelivr.net/npm/vega-embed@6'></script>
+    <style>
+      body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+      #vis { width: min(92vw, 900px); margin: 24px auto; }
+    </style>
+  </head>
+  <body>
+    <div id='vis'></div>
+
+    <script>
+      const spec = {
+        "$schema": "https://vega.github.io/schema/vega/v6.json",
+        "description": "An example of a radial layout for a node-link diagram of hierarchical data.",
+        "width": 720,
+        "height": 720,
+        "padding": 5,
+        "autosize": "none",
+
+        "data": [
+          {
+            "name": "tree",
+            "url": "data.json",
+            "transform": [
+              {
+                "type": "collect",
+                "sort": {"field": "size", "order": "descending"}
+              },
+              {
+                "type": "stratify",
+                "key": "id",
+                "parentKey": "parent"
+              },
+              {
+                "type": "tree",
+                "method": "tidy",
+                "size": [1, 280],
+                "sort": {"field": "size", "order": "descending"},
+                "as": ["alpha", "radius", "depth", "children"]
+              },
+              {
+                "type": "formula",
+                "expr": "(0 + 360 * datum.alpha + 270) % 360",
+                "as":   "angle"
+              },
+              {
+                "type": "formula",
+                "expr": "PI * datum.angle / 180",
+                "as":   "radians"
+              },
+              {
+                "type": "formula",
+                "expr": "inrange(datum.angle, [90, 270])",
+                "as":   "leftside"
+              },
+              {
+                "type": "formula",
+                "expr": "datum.depth == 1 ? datum.radius : datum.radius",
+                "as": "radius"
+              },
+              {
+                "type": "formula",
+                "expr": "datum.depth == 2 ? datum.name : datum.depth == 3 ? replace(datum.parent, '.*-', '') : null",
+                "as": "category"
+              },
+              {
+                "type": "formula",
+                "expr": "width / 2 + datum.radius * cos(datum.radians)",
+                "as":   "x"
+              },
+              {
+                "type": "formula",
+                "expr": "height / 2 + datum.radius * sin(datum.radians)",
+                "as":   "y"
+              },
+              {
+                "type": "formula",
+                "expr": "pow(datum.size, 0.85)",
+                "as": "scaledSize"
+              }
+            ]
+          },
+          {
+            "name": "links",
+            "source": "tree",
+            "transform": [
+              { "type": "treelinks" },
+              {
+                "type": "linkpath",
+                "shape": "diagonal", "orient": "radial",
+                "sourceX": "source.radians", "sourceY": "source.radius",
+                "targetX": "target.radians", "targetY": "target.radius"
+              }
+            ]
+          }
+        ],
+
+        "scales": [
+          {
+            "name": "categoryColor",
+            "type": "ordinal",
+            "domain": [
+              "Administrative",
+              "Physical",
+              "Institutional",
+              "Event-based",
+              "Events-based",
+              "Economic",
+              "Cultural"
+            ],
+            "range": [
+              "#66c2a5",
+              "#fc8d62",
+              "#8da0cb",
+              "#e78ac3",
+              "#e78ac3",
+              "#a6d854",
+              "#ffd92f"
+            ]
+          }
+        ],
+
+        "marks": [
+          {
+            "type": "path",
+            "from": {"data": "links"},
+            "encode": {
+              "update": {
+                "x": {"signal": "width / 2"},
+                "y": {"signal": "height / 2"},
+                "path": {"field": "path"},
+                "stroke": {"value": "#ccc"}
+              }
+            }
+          },
+          {
+            "type": "symbol",
+            "from": {"data": "tree"},
+      "encode": {
+        "enter": {
+          "strokeWidth": {"value": 1}
+        },
+        "update": {
+          "size": {"field": "scaledSize"},
+          "x": {"field": "x"},
+          "y": {"field": "y"},
+          "fill": {"signal": "datum.colour ? datum.colour : '#bdbdbd'"},
+          "fillOpacity": {"value": 0.7},
+          "stroke": {"signal": "datum.colour ? datum.colour : '#bdbdbd'"},
+          "strokeWidth": {"value": 1.5}
+        }
+      }
+    },
+          {
+            "type": "text",
+            "from": {"data": "tree"},
+            "encode": {
+              "enter": {
+                "text": {"signal": "datum.depth == 0 ? upper(datum.name) : ''"},
+                "fontSize": {"value": 14},
+                "baseline": {"value": "middle"}
+              },
+              "update": {
+                "x": {"field": "x"},
+                "y": {"field": "y"},
+                "align": {"value": "center"},
+                "fill": {"value": "black"},
+                "fillOpacity": {"value": 0.7}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "from": {"data": "tree"},
+            "encode": {
+              "enter": {
+                "text": {"signal": "datum.depth == 1 ? datum.name : ''"},
+                "fontSize": {"value": 9},
+                "baseline": {"value": "bottom"},
+                "align": {"value": "center"}
+              },
+              "update": {
+                "x": {"field": "x"},
+                "y": {"signal": "datum.y - sqrt(datum.scaledSize / PI) + 1"},
+                "fill": {"value": "#666"},
+                "fillOpacity": {"value": 0.7}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "from": {"data": "tree"},
+            "encode": {
+              "enter": {
+                "text": {"signal": "datum.depth == 2 ? datum.name : ''"},
+                "fontSize": {"value": 9},
+                "baseline": {"value": "bottom"},
+                "align": {"value": "center"}
+              },
+              "update": {
+                "x": {"field": "x"},
+                "y": {"signal": "datum.y - sqrt(datum.scaledSize / PI) + 1"},
+                "fill": {"value": "#666"},
+                "fillOpacity": {"value": 0.7}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "from": {"data": "tree"},
+            "encode": {
+              "enter": {
+                "text": {"signal": "datum.depth == 3 ? datum.name : ''"},
+                "fontSize": {"value": 9},
+                "baseline": {"value": "middle"}
+              },
+              "update": {
+                "x": {"signal": "datum.x + sqrt(datum.scaledSize / PI) * cos(datum.radians)"},
+                "y": {"signal": "datum.y + sqrt(datum.scaledSize / PI) * sin(datum.radians)"},
+                "dx": {"signal": "(datum.leftside ? -1 : 1) * 6"},
+                "angle": {"signal": "datum.leftside ? datum.angle - 180 : datum.angle"},
+                "align": {"signal": "datum.leftside ? 'right' : 'left'"},
+                "fill": {"value": "black"},
+                "fillOpacity": {"value": 0.7}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "from": {"data": "tree"},
+            "encode": {
+              "enter": {
+                "text": {"signal": "datum.depth >= 1 ? round(datum.size * 1000.0 / 104288.0) / 10 : ''"},
+                "fontSize": {"value": 7},
+                "baseline": {"value": "middle"},
+                "align": {"value": "center"}
+              },
+              "update": {
+                "x": {"field": "x"},
+                "y": {"field": "y"},
+                "fill": {"value": "black"},
+                "fillOpacity": {"value": 0.9},
+                "fontWeight": {"value": "555"}
+              }
+            }
+          }
+        ]
+      }
+
+      const container = document.getElementById('vis');
+      const containerSize = Math.max(320, Math.min(container.clientWidth || 720, 900));
+      spec.width = containerSize;
+      spec.height = containerSize;
+
+      vegaEmbed('#vis', spec, { actions: true }).catch(err => console.error(err));
+
+    </script>
+  </body>
+</html>
