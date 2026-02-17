@@ -22,6 +22,11 @@
         "height": 720,
         "padding": 5,
         "autosize": "none",
+        "signals": [
+          { "name": "defaultAngleOffset", "value": 270 },
+          { "name": "orphanDepth1AngleOffset", "value": 310 },
+          { "name": "orphanDepth1RadiusScaler", "value": 0.60 },
+        ],
 
         "data": [
           {
@@ -46,7 +51,7 @@
               },
               {
                 "type": "formula",
-                "expr": "(0 + 360 * datum.alpha + 270) % 360",
+                "expr": "(360 * datum.alpha + (datum.depth == 1 && datum.children == 0 ? orphanDepth1AngleOffset : defaultAngleOffset)) % 360",
                 "as":   "angle"
               },
               {
@@ -61,7 +66,7 @@
               },
               {
                 "type": "formula",
-                "expr": "datum.depth == 1 ? datum.radius * 0.65 : datum.depth == 2 ? datum.radius * 0.85 : datum.radius",
+                "expr": "datum.depth == 1 && datum.children == 0 ? datum.radius * orphanDepth1RadiusScaler : datum.depth == 1 ? datum.radius * 0.75 : datum.depth == 2 ? datum.radius * 0.95 : datum.radius",
                 "as": "radius"
               },
               {
@@ -162,9 +167,11 @@
             "from": {"data": "tree"},
             "encode": {
               "enter": {
-                "text": {"signal": "datum.depth == 0 ? upper(datum.name) : ''"},
+                "text": {"signal": "datum.depth == 0 ? replace(upper(datum.name), ' ', '\\n') : ''"},
                 "fontSize": {"value": 14},
                 "fontWeight": {"value": "bold"},
+                "lineBreak": {"value": "\n"},
+                "lineHeight": {"value": 16},
                 "baseline": {"value": "middle"}
               },
               "update": {
@@ -188,8 +195,8 @@
               },
               "update": {
                 "x": {"field": "x"},
-                "y": {"signal": "datum.y - sqrt(datum.scaledSize / PI) + 1"},
-                "fill": {"value": "#666"},
+                "y": {"signal": "datum.y + sqrt(datum.scaledSize / PI) + 10"},
+                "fill": {"value": "black"},
                 "fillOpacity": {"value": 0.7}
               }
             }
