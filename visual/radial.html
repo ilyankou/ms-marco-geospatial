@@ -61,7 +61,7 @@
               },
               {
                 "type": "formula",
-                "expr": "datum.depth == 1 ? datum.radius : datum.radius",
+                "expr": "datum.depth == 1 ? datum.radius * 0.65 : datum.depth == 2 ? datum.radius * 0.85 : datum.radius",
                 "as": "radius"
               },
               {
@@ -164,6 +164,7 @@
               "enter": {
                 "text": {"signal": "datum.depth == 0 ? upper(datum.name) : ''"},
                 "fontSize": {"value": 14},
+                "fontWeight": {"value": "bold"},
                 "baseline": {"value": "middle"}
               },
               "update": {
@@ -198,7 +199,7 @@
             "from": {"data": "tree"},
             "encode": {
               "enter": {
-                "text": {"signal": "datum.depth == 2 ? datum.name : ''"},
+                "text": {"signal": "''"},
                 "fontSize": {"value": 9},
                 "baseline": {"value": "bottom"},
                 "align": {"value": "center"}
@@ -216,7 +217,7 @@
             "from": {"data": "tree"},
             "encode": {
               "enter": {
-                "text": {"signal": "datum.depth == 3 ? datum.name : ''"},
+                "text": {"signal": "datum.depth == 2 ? datum.name : ''"},
                 "fontSize": {"value": 9},
                 "baseline": {"value": "middle"}
               },
