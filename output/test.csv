@@ -1,0 +1,75 @@
+,title,group,representative_query
+0,Absolute locations of places,Location,what is italy's location
+1,Best time to visit,Temporal,what is the best time of the year to go to cozumel
+2,Contact details,Location,phone number for springfield
+3,Costs and prices,Occurrence,how much money does it cost to go in the burj
+4,Which county (US),Containment,what county is birmingham al in
+5,Which county (US),Containment,valencia is in what county in ca
+6,Which county (US),Containment,what is the county of florida
+7,Which county (US),Containment,what county is atlanta
+8,Which county (US),Containment,what county is chicago in illinois
+9,Which county (US),Containment,what county is iowa city in
+10,Which county (US),Containment,in what county is topeka ks
+11,Which county (US),Containment,what county is maysville ky
+12,Which county (US),Containment,what county is centreville maryland in
+13,Which county (US),Containment,"what county is boston, ma"
+14,Which county (US),Containment,lansing mi is in what county
+15,Which county (US),Containment,what county in minneapolis mn
+16,Which county (US),Containment,in what county is jackson ms
+17,Which county (US),Containment,what county is kansas city mo in
+18,Which county (US),Containment,what county is bergen nj in
+19,Which county (US),Containment,what county is new york ny
+20,Which county (US),Containment,what county is raleigh north carolina located in
+21,Which county (US),Containment,"in what county is columbus, oh"
+22,Which county (US),Containment,what county in lebanon pa in
+23,Which county (US),Containment,what county nashville tn in
+24,Which county (US),Containment,austin texas  is in what county
+25,Which county (US),Containment,what county richmond va
+26,Which county (US),Containment,butte is in what county
+27,Which county (US),Containment,in what county is washington wi
+28,Which county (US),Containment,oakdale is in what county
+29,Distances and driving times,Proximity,how far is it from dallas to atlanta
+30,Distances and driving times,Proximity,how far is it between two cities
+31,Distances and driving times,Proximity,distance las vegas to grand canyon
+32,Celestial bodies,Proximity,how far is earth from the mars
+33,Filming locations,Location,where was the ranch filmed
+34,Foods and cuisines,Occurrence,what foods do they eat in italy
+36,"Biomes, plants, and animals",Occurrence,where can the grasslands be found
+37,Languages spoken,Occurrence,what language do they speak in malta
+38,Legal status or eligibility,Containment,how old do you have to be to have a cdl  in new york state
+39,"Casinos, resorts",Location,how many hotel rooms are on the vegas strip
+40,Volcanoes,Location,where was the volcano that erupted today
+41,Rivers,Location,river that serves largest cultivable area
+42,Mountains and landforms,Location,which mountain is the tallest
+43,Buildings and monuments,Location,what is the tallest building in the world
+44,Occurrence of natural disasters,Occurrence,where did an earthquake occur today in us that was unusual
+45,Countries and regions in Africa,Location,where part of africa is nigeria at
+46,"Historical events, deaths, and disasters",Location,where was the black death found
+47,Hospitals and medical services,Location,hospital in detroit
+48,Hotels and accommodation,Location,what hotels are under holiday inn
+49,Islands,Location,what island is off the map
+50,"Military bases, defence facilities",Location,where is the main us army base
+51,Places in the British Isles,Location,what region is ireland located
+52,Places in Asia,Location,asia where is it located
+53,Places in Washington DC,Location,what is the location of washington dc
+54,Places in the Middle East,Location,in what region of the world is egypt located
+55,Sports venues and events,Location,where is the open being played
+56,Universities and campuses,Location,where is penn state's main campus
+57,Lakes and water bodies,Location,what is the deepest freshwater lake in the world
+58,Bridges and tunnels,Location,longest bridge in
+59,Corporate headquarters,Location,where is headquarters located
+60,Manufacturing locations,Location,where are bugatti's manufactured
+61,Airports and air access,Proximity,what is closest airport
+62,Opening hours,Temporal,what time does walmart opens
+63,Which county (US),Containment,what parish is shreveport in
+64,Population sizes,Location,population in grafton county
+65,Which province (Canada),Containment,toronto is in what province
+66,Sale locations,Location,where can i buy avalanche sharks
+67,City/state comparisons,Location,what is the largest city in the US by area
+68,Store locations and counts,Location,how many shops does walmart have
+69,Telephone area codes,Containment,what area code
+70,Timezones and time differences,Temporal,what time zone is in
+71,Travel duration (flying),Proximity,how soon should i get to the airport
+72,TV/broadcast availability,Occurrence,what channel is the cubs game
+73,Weather conditions,Temporal,weather in mon
+74,ZIP and postal codes,Containment,what's the zip code for this place?

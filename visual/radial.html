@@ -18,8 +18,8 @@
       const spec = {
         "$schema": "https://vega.github.io/schema/vega/v6.json",
         "description": "An example of a radial layout for a node-link diagram of hierarchical data.",
-        "width": 720,
-        "height": 720,
+        "width": 600,
+        "height": 600,
         "padding": 5,
         "autosize": "none",
         "signals": [
@@ -66,7 +66,7 @@
               },
               {
                 "type": "formula",
-                "expr": "datum.depth == 1 && datum.children == 0 ? datum.radius * orphanDepth1RadiusScaler : datum.depth == 1 ? datum.radius * 0.90 : datum.depth == 2 ? datum.radius * 0.80 : datum.radius",
+                "expr": "datum.depth == 1 && datum.children == 0 ? datum.radius * orphanDepth1RadiusScaler : datum.depth == 1 ? datum.radius * 0.86 : datum.depth == 2 ? datum.radius * 0.74 : datum.radius",
                 "as": "radius"
               },
               {
@@ -196,7 +196,7 @@
             "encode": {
               "enter": {
                 "text": {"signal": "datum.depth == 1 ? datum.name : ''"},
-                "fontSize": {"value": 9},
+                "fontSize": {"value": 11},
                 "baseline": {"value": "bottom"},
                 "align": {"value": "center"}
               },
@@ -214,7 +214,7 @@
             "encode": {
               "enter": {
                 "text": {"signal": "''"},
-                "fontSize": {"value": 9},
+                "fontSize": {"value": 11},
                 "baseline": {"value": "bottom"},
                 "align": {"value": "center"}
               },
@@ -232,7 +232,7 @@
             "encode": {
               "enter": {
                 "text": {"signal": "datum.depth == 2 ? datum.name : ''"},
-                "fontSize": {"value": 9},
+                "fontSize": {"value": 11},
                 "baseline": {"value": "middle"}
               },
               "update": {
@@ -252,7 +252,7 @@
             "encode": {
               "enter": {
                 "text": {"signal": "datum.depth == 1 ? (round(datum.size * 1000.0 / 104288.0) / 10) + '%' : datum.depth == 2 && datum.siblingOrder == 1 ? (round(datum.size * 1000.0 / 104288.0) / 10) + '%' : datum.depth >= 1 ? round(datum.size * 1000.0 / 104288.0) / 10 : ''"},
-                "fontSize": {"value": 7},
+                "fontSize": {"value": 9},
                 "baseline": {"value": "middle"},
                 "align": {"value": "center"}
               },
@@ -269,7 +269,7 @@
       }
 
       const container = document.getElementById('vis');
-      const containerSize = Math.max(320, Math.min(container.clientWidth || 720, 900));
+      const containerSize = Math.max(320, Math.min(container.clientWidth || 720, 820));
       spec.width = containerSize;
       spec.height = containerSize;
 
