@@ -6,5 +6,8 @@ interim/query_emb.npy
 spatial-classifier
 spatial_classifier
 spatial_classifier_prod
+geospatial_query_classifier_eval
+geospatial_query_classifier
+is-geospatial-query
 runs
 checkpoints
