@@ -2,6 +2,10 @@
 
 We apply a SetFit binary classifier and UMAP+HDBSCAN clustering to the full MS MARCO corpus of 1.01M Bing queries, identify 181,827 geospatial queries (18.0%), and derive a taxonomy of 88 categories grouped into 9 themes.
 
+<p align="center">
+	<img src="visual/clusters.svg" alt="Clusters visualization" style="max-width:100%;height:auto;" />
+</p>
+
 ## Repository structure
 
 | Path | Contents |
