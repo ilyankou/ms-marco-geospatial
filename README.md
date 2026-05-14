@@ -1,5 +1,6 @@
 # Much of Geospatial Web Search Is Beyond Traditional GIS
-**Official repository for the paper accepted as a full paper to [COSIT 2026](https://www.york.ac.uk/conferences/cosit2026/) in York.**
+
+**Official repository for [the paper](https://arxiv.org/abs/2605.11336) accepted as a full paper to [COSIT 2026](https://www.cosit2026.uk/)**
 
 We apply a SetFit binary classifier and UMAP+HDBSCAN clustering to the full MS MARCO corpus of 1.01M Bing queries, identify 181,827 geospatial queries (18.0%), and derive a taxonomy of 88 categories grouped into 9 themes.
 
